@@ -1,0 +1,8 @@
+development: &default
+  search_radius: 10 #This value is in kilometers
+
+test:
+  <<: *default
+
+production:
+  <<: *default

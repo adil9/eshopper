@@ -1,0 +1,10 @@
+<% if current_user %>
+  <div> Welcome to e-shopper </div>
+  <%= link_to destroy_user_session_path, method: :delete do %>
+    Logout
+  <% end %>
+<% else %>
+  <%= link_to new_user_session_path do %>
+    Signin
+  <% end %>
+<% end %>

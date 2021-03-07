@@ -1,0 +1,64 @@
+require:
+  - rubocop-rails
+
+AllCops:
+  SuggestExtensions: false
+  NewCops: enable
+  Exclude:
+    - 'db/*schema*.rb'
+    - 'vendor/**/*'
+    - 'node_modules/**/*'
+    - 'spec/fixtures/**/*'
+    - 'tmp/**/*'
+    - 'bin/**'
+  TargetRubyVersion: 2.7
+
+Rails:
+  Enabled: true
+
+# Layout Cops
+Layout/LineLength:
+  Max: 200
+
+# Style Cops
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/Documentation:
+  Exclude:
+    - 'db/**/*'
+
+Rails/FilePath:
+  Enabled: false
+
+##################### Metrics ##################################
+Metrics/AbcSize:
+  # The ABC size is a calculated magnitude, so this number can be a Fixnum or
+  # a Float.
+  Max: 30
+Metrics/BlockNesting:
+  Max: 3
+Metrics/ClassLength:
+  CountComments: false  # count full line comments?
+  Max: 200
+Metrics/ModuleLength:
+  CountComments: false  # count full line comments?
+  Max: 200
+# Avoid complex methods.
+Metrics/CyclomaticComplexity:
+  Max: 6
+Metrics/MethodLength:
+  CountComments: false  # count full line comments?
+  Max: 25
+Metrics/BlockLength:
+  Max: 25
+  IgnoredMethods: ['describe', 'context', 'included']
+  Exclude:
+    - "config/environments/*.rb"
+    - "config/routes.rb"
+    - "config/deploy.rb"
+    - 'spec/factories/**/*'
+    - 'lib/tasks/*'
+Metrics/ParameterLists:
+  Max: 5
+  CountKeywordArgs: true
