@@ -10,5 +10,9 @@ module ExceptionHandling
     rescue_from ActiveRecord::RecordNotFound do |_exception|
       render json: { message: 'The resource you are looking is not found' }, status: :not_found
     end
+
+    rescue_from LatLngBlankError do |exception|
+      render json: { message: exception.message }, status: :unprocessable_entity
+    end
   end
 end

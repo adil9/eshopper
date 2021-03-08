@@ -1,5 +1,6 @@
 development: &default
-  search_radius: 10 #This value is in kilometers
+  shop_search_radius: 10 # This value is in kilometers
+  deliverer_search_radius: 5 # This value is in kilometers
 
 test:
   <<: *default

@@ -3,6 +3,6 @@
 module Auth
   # Enable Basic Registration Process
   class RegistrationsController < Devise::RegistrationsController
-    skip_forgery_protection #Done only temporarily
+    skip_forgery_protection
   end
 end

@@ -5,7 +5,11 @@ module Api
     class ApiController < ActionController::API
       include UserAuthentication
       include ExceptionHandling
+      include PaginationMeta
+      before_action :authenticate_user
+
       private
+
       def log_error(error)
         Rails.logger.error error.message
         Rails.logger.error error.backtrace.join("\n")

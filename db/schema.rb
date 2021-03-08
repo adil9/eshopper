@@ -10,11 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_06_202056) do
+ActiveRecord::Schema.define(version: 2021_03_07_191040) do
 
   create_table "carts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.integer "user_id"
-    t.integer "status", limit: 2
+    t.integer "status", limit: 2, default: 3
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_carts_on_user_id", unique: true
@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 2021_03_06_202056) do
   create_table "carts_items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.integer "item_id"
     t.integer "cart_id"
-    t.integer "quantity"
+    t.integer "quantity", default: 0
     t.integer "status", limit: 2
     t.decimal "discount", precision: 13, scale: 2
     t.decimal "price", precision: 13, scale: 2
@@ -70,7 +70,7 @@ ActiveRecord::Schema.define(version: 2021_03_06_202056) do
     t.integer "user_id"
     t.integer "delivery_person_id"
     t.string "order_no", limit: 36
-    t.integer "status", limit: 2
+    t.integer "status", limit: 2, default: 1
     t.string "promo_code", limit: 40
     t.integer "payment_method", limit: 2
     t.datetime "created_at", precision: 6, null: false
@@ -90,13 +90,14 @@ ActiveRecord::Schema.define(version: 2021_03_06_202056) do
     t.decimal "tax", precision: 6, scale: 2
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "status", limit: 2, default: 1
     t.index ["order_id"], name: "index_orders_items_on_order_id"
   end
 
   create_table "ratings", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.integer "user_id"
     t.integer "shop_id"
-    t.float "rating"
+    t.float "rating", default: 0.0
     t.text "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -107,14 +108,14 @@ ActiveRecord::Schema.define(version: 2021_03_06_202056) do
     t.string "name", limit: 190
     t.text "description"
     t.decimal "lat", precision: 15, scale: 10
-    t.decimal "long", precision: 15, scale: 10
+    t.decimal "lng", precision: 15, scale: 10
     t.string "string"
     t.string "image_url"
-    t.float "rating"
+    t.float "rating", default: 0.0
     t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["lat", "long"], name: "index_shops_on_lat_and_long"
+    t.index ["lat", "lng"], name: "index_shops_on_lat_and_lng"
     t.index ["name"], name: "index_shops_on_name"
     t.index ["user_id"], name: "index_shops_on_user_id"
   end
@@ -130,12 +131,13 @@ ActiveRecord::Schema.define(version: 2021_03_06_202056) do
     t.string "phone", limit: 10
     t.string "first_name", limit: 100
     t.string "last_name", limit: 100
-    t.string "user_type", limit: 2
+    t.integer "user_type", default: 1
     t.string "image_url"
     t.decimal "lat", precision: 15, scale: 10
-    t.decimal "long", precision: 15, scale: 10
+    t.decimal "lng", precision: 15, scale: 10
+    t.integer "status", limit: 2, default: 1
     t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["lat", "long"], name: "index_users_on_lat_and_long"
+    t.index ["lat", "lng"], name: "index_users_on_lat_and_lng"
     t.index ["phone"], name: "index_users_on_phone", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

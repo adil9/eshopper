@@ -4,7 +4,7 @@ class AddProfileFieldsToUsers < ActiveRecord::Migration[6.0]
       t.string :phone, limit: 10
       t.string :first_name, limit: 100
       t.string :last_name, limit: 100
-      t.string :user_type, limit: 2
+      t.integer :user_type, limit: 2, default: 1
       t.string :image_url
       t.decimal :lat, precision: 15, scale: 10
       t.decimal :long, precision: 15, scale: 10
