@@ -7,11 +7,15 @@ class OrderService
   def prepare_order(current_user_id, payment_method, cart)
     carts_items = cart.carts_items
     cart.checkout!
-    @order = Order.create(
-      shop_id: carts_items.first.item.shop_id,
-      user_id: current_user_id,
-      payment_method: payment_method
-    )
+    begin
+      @order = Order.create!(
+        shop_id: carts_items.first.item.shop_id,
+        user_id: current_user_id,
+        payment_method: payment_method
+      )
+    rescue StandardError
+      raise NotAllowedError, "Allowed payment methods: #{Order.payment_methods.keys.join(',')}"
+    end
     carts_items.each do |item|
       main_item = item.item
       OrdersItem.create!(

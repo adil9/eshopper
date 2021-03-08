@@ -1,13 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe Order, type: :model do
-  let!(:user) {FactoryBot.create(:user)}
-  let!(:user2) {FactoryBot.create(:user, user_type: User.user_types[:delivery_person])}
-  let!(:shop) { FactoryBot.create(:shop)}
-  let!(:item) {FactoryBot.create(:item, shop: shop)}
-  let!(:order) {FactoryBot.create(:order, delivery_person_id: user2.id, user: user)}
-  let!(:cart_item) {FactoryBot.create(:carts_item, cart: user.cart, item: item)}
-  let!(:order_item) {FactoryBot.create(:orders_item, item: item, order: order)}
+  let!(:user) { FactoryBot.create(:user) }
+  let!(:user2) { FactoryBot.create(:user, user_type: User.user_types[:delivery_person]) }
+  let!(:shop) { FactoryBot.create(:shop) }
+  let!(:item) { FactoryBot.create(:item, shop: shop) }
+  let!(:order) { FactoryBot.create(:order, delivery_person_id: user2.id, user: user) }
+  let!(:cart_item) { FactoryBot.create(:carts_item, cart: user.cart, item: item) }
+  let!(:order_item) { FactoryBot.create(:orders_item, item: item, order: order) }
   describe '#associations and statuses and methods' do
     it { should respond_to(:user) }
     it { should respond_to(:shop) }
@@ -23,11 +23,11 @@ RSpec.describe Order, type: :model do
     it { should respond_to(:delivered?) }
   end
   describe '#events' do
-    it {should respond_to(:reject)}
-    it {should respond_to(:accept)}
-    it {should respond_to(:make_ready)}
-    it {should respond_to(:picked)}
-    it {should respond_to(:mark_deliver)}
+    it { should respond_to(:reject) }
+    it { should respond_to(:accept) }
+    it { should respond_to(:make_ready) }
+    it { should respond_to(:picked) }
+    it { should respond_to(:mark_deliver) }
   end
 
   describe '#assign_deliverer' do

@@ -11,6 +11,8 @@ module Api
         order_service = OrderService.new
         order = order_service.prepare_order(current_user.id, params[:payment_method], cart)
         render json: OrderSerializer.new(order, options), status: :ok
+      rescue NotAllowedError => e
+        render json: { message: e.message }, status: :unprocessable_entity
       end
 
       def update

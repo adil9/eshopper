@@ -59,7 +59,7 @@ class Order < ApplicationRecord
     delivered: 8, declined: 9
   }
 
-  enum payment_method: { cod: 1, upi: 2 }
+  enum payment_method: { cod: 1 }
 
   private
 

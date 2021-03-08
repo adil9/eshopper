@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Rating, type: :model do
-  let!(:user) {FactoryBot.create(:user)}
-  let!(:shop) { FactoryBot.create(:shop, rating: 0)}
+  let!(:user) { FactoryBot.create(:user) }
+  let!(:shop) { FactoryBot.create(:shop, rating: 0) }
 
   describe '#associations and statuses and methods' do
     it { should respond_to(:user) }
@@ -22,8 +22,8 @@ RSpec.describe Rating, type: :model do
   end
   describe '#rating_value' do
     it 'Do not allow update if rating is not withing permissible range (1-5)' do
-      expect {FactoryBot.create(:rating, user: user, shop: shop, rating: 6) }
-          .to raise_error(ActiveRecord::RecordInvalid)
+      expect { FactoryBot.create(:rating, user: user, shop: shop, rating: 6) }
+        .to raise_error(ActiveRecord::RecordInvalid)
     end
   end
 end

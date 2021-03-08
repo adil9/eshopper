@@ -5,7 +5,9 @@ class Shop < ApplicationRecord
   has_many :ratings, dependent: :destroy
   has_many :items, dependent: :destroy
   has_many :orders, dependent: :nullify
-  validates_presence_of :name
+  validates :name, presence: true
+  validates :lat, presence: true
+  validates :lng, presence: true
 
   def recalculate_ratings
     user_reviews = ratings.pluck(:rating)
